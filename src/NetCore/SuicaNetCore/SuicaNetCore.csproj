@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FelicaLibWrapper\FelicaLibWrapper.csproj" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="if exist &quot;$(ProjectDir)..\..\$(ConfigurationName)\felicalib.dll&quot; xcopy /Y /I &quot;$(ProjectDir)..\..\$(ConfigurationName)\felicalib.dll&quot; &quot;$(TargetDir)&quot;&#xD;&#xA;if exist &quot;$(ProjectDir)..\..\x64\$(ConfigurationName)\felicalib64.dll&quot; xcopy /Y /I &quot;$(ProjectDir)..\..\x64\$(ConfigurationName)\felicalib64.dll&quot; &quot;$(TargetDir)&quot;&#xD;&#xA;" />
+  </Target>
+
+</Project>

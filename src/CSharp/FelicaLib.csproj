@@ -44,6 +44,15 @@
     <Compile Include="Sample.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>if exist "$(ProjectDir)..\$(ConfigurationName)\felicalib.dll" xcopy /Y /I "$(ProjectDir)..\$(ConfigurationName)\felicalib.dll" "$(TargetDir)"
+if exist "$(ProjectDir)..\x64\$(ConfigurationName)\felicalib64.dll" xcopy /Y /I "$(ProjectDir)..\x64\$(ConfigurationName)\felicalib64.dll" "$(TargetDir)"
+</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
